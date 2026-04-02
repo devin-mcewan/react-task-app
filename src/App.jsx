@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import InputContainer from "./components/InputContainer/TaskCreator";
+import InputContainer from "./components/TaskCreator/TaskCreator";
 
 function App() {
   return (
