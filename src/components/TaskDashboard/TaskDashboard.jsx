@@ -5,7 +5,7 @@ import "./TaskDashboard.css";
 
 export default function TaskDashboard() {
   //   const [tasks, setTasks] = useState([]);
-  const [dashboard, setDashboard] = useState("new");
+  const [dashboard, setDashboard] = useState("New");
 
   //   const newTasks = tasks.filter((task) => task.status === "created");
   //   const inProgressTasks = tasks.filter((task) => task.status === "in progress");

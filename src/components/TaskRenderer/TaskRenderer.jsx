@@ -12,7 +12,7 @@ export default function TaskRenderer({ dashboardValue }) {
     );
   } else
     rendered = (
-      <div>
+      <div className="task-container">
         <h2>{dashboardValue} tasks</h2>
         <p>Displaying all items marked as {dashboardValue}</p>
       </div>
