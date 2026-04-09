@@ -1,0 +1,25 @@
+.task-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 10px;
+  min-height: 250px;
+}
+.task-card-container:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.task-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.task-button-container button {
+  padding: 5px;
+  margin: 0 10px;
+}

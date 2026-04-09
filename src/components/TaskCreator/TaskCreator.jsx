@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import "./TaskCreator.css";
+import TaskCard from "../TaskCard/TaskCard";
 
-export default function InputContainer({ onCreate }) {
+export default function InputContainer({ onCreate, onClear }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("low");
@@ -39,11 +40,17 @@ export default function InputContainer({ onCreate }) {
         </select>
         <button
           className="add-task-button"
-          onClick={() => onCreate(title, description, priority)}
+          onClick={() => {
+            onCreate(title, description, priority);
+            setTitle("");
+            setDescription("");
+          }}
         >
           Add Task
         </button>
       </div>
+      <button onClick={() => onClear()}>Clear all tasks</button>
+      <TaskCard />
     </div>
   );
 }
