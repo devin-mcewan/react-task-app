@@ -41,7 +41,8 @@ export default function InputContainer({ onCreate, onClear }) {
         <button
           className="add-task-button"
           onClick={() => {
-            onCreate(title, description, priority);
+            let id = Date.now();
+            onCreate(id, title, description, priority);
             setTitle("");
             setDescription("");
           }}
@@ -49,8 +50,16 @@ export default function InputContainer({ onCreate, onClear }) {
           Add Task
         </button>
       </div>
-      <button onClick={() => onClear()}>Clear all tasks</button>
-      <TaskCard />
+      <button
+        className="clear"
+        onClick={() => {
+          onClear();
+          alert("tasks cleared");
+        }}
+      >
+        CLEAR ALL TASKS
+      </button>
+      <TaskCard title="Title" description="Description" priority="Priority" />
     </div>
   );
 }

@@ -10,7 +10,7 @@
   min-height: 250px;
 }
 .task-card-container:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .task-button-container {
   display: flex;
@@ -22,4 +22,37 @@
 .task-button-container button {
   padding: 5px;
   margin: 0 10px;
+}
+
+#delete {
+  padding: 10px 20px;
+  background-color: #d9544fab;
+  color: white; /* Modern red */
+  border: 2px solid #db2f29;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#delete:hover {
+  background-color: #db2f29;
+  color: white;
+  box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
+}
+
+#start {
+  padding: 10px 20px;
+  background-color: #4fd97dd2;
+  color: white; /* Modern red */
+  border: 2px solid #44cc4f;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#start:hover {
+  background-color: #44cc4f;
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 217, 97, 0.3); /* Soft red shadow */
 }

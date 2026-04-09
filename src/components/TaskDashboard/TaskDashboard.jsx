@@ -9,25 +9,16 @@ export default function TaskDashboard() {
   // dashboard keeps track of the desired task list a user is trying to view
   const [dashboard, setDashboard] = useState("New");
 
-  // const newTasks = tasks.filter((task) => task.status === "created");
-  const createTask = (title, description, priority) => {
-    console.log("Creating task");
+  // const newTasks = tasks.filter((task) => task.status === "new");
+  const createTask = (id, title, description, priority) => {
     if (!title || !description || !priority) {
       alert("Please complete all fields");
       return;
     }
     setTasks((prev) => [
       ...prev,
-      { title, description, priority, status: "created" },
+      { id, title, description, priority, status: "New" },
     ]);
-
-    // settings tasks conditional if previous tasks
-    // setTasks((prev) =>
-    //   prev
-    //     ? [...prev, { title, description, priority, status: "created" }]
-    //     : [{ title, description, priority, status: "created" }],
-    // );
-    console.log(tasks);
   };
 
   const eraseTasks = () => {
@@ -65,6 +56,7 @@ export default function TaskDashboard() {
       </div>
       <div className="task-display">
         <TaskRenderer
+          tasks={tasks}
           dashboardValue={dashboard}
           onCreate={createTask}
           onClear={eraseTasks}

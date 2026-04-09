@@ -3,7 +3,12 @@ import "./TaskRenderer.css";
 import TaskCreator from "../TaskCreator/TaskCreator.jsx";
 import TaskCard from "../TaskCard/TaskCard.jsx";
 
-export default function TaskRenderer({ dashboardValue, onCreate, onClear }) {
+export default function TaskRenderer({
+  dashboardValue,
+  onCreate,
+  onClear,
+  tasks,
+}) {
   let rendered;
   if (dashboardValue === "create-new") {
     rendered = (
@@ -18,7 +23,21 @@ export default function TaskRenderer({ dashboardValue, onCreate, onClear }) {
           <h2>{dashboardValue} tasks</h2>
           <p>Displaying all items marked as {dashboardValue}</p>
         </div>
-        <TaskCard />
+        {tasks ? (
+          tasks.forEach((task) => {
+            <TaskCard
+              title={task.title}
+              description={task.description}
+              priority={task.priority}
+            />;
+          })
+        ) : (
+          <TaskCard
+            title="Title"
+            description="Description"
+            priority="Priority"
+          />
+        )}
       </div>
     );
 

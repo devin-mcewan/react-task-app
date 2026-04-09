@@ -3,18 +3,21 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
+  width: 80%;
   gap: 8px;
-  padding: 16px;
+  padding: 20px;
   background-color: rgb(255, 255, 255, 50%);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .input-container label {
@@ -68,4 +71,21 @@
 
 .input-container button:active {
   background-color: #2a5a8f;
+}
+
+.clear {
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: white; /* Modern red */
+  border: 2px solid #d9534f;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.clear:hover {
+  background-color: #db2f29;
+  color: white;
+  box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
 }
