@@ -5,7 +5,7 @@ import "./TaskCreator.css";
 export default function InputContainer({ onCreate }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
+  const [priority, setPriority] = useState("low");
 
   return (
     <div className="tasks">

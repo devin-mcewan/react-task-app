@@ -11,6 +11,12 @@ export default function TaskDashboard() {
 
   // const newTasks = tasks.filter((task) => task.status === "created");
   const createTask = (title, description, priority) => {
+    console.log("Title: " + title);
+    console.log("Description: " + description);
+    console.log("Priority: " + priority);
+    if (!title || !description || !priority) {
+      alert("Please complete all fields");
+    }
     console.log("success");
     setTasks((prev) => [
       ...prev,
