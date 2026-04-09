@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import "./TaskCreator.css";
 
-export default function InputContainer() {
+export default function InputContainer({ onCreate }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
+
   return (
     <div className="tasks">
       <div className="input-container">
@@ -36,7 +37,12 @@ export default function InputContainer() {
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
-        <button className="add-task-button">Add Task</button>
+        <button
+          className="add-task-button"
+          onClick={() => onCreate(title, description, priority)}
+        >
+          Add Task
+        </button>
       </div>
     </div>
   );

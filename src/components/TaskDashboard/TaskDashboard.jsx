@@ -4,15 +4,19 @@ import TaskRenderer from "../TaskRenderer/TaskRenderer";
 import "./TaskDashboard.css";
 
 export default function TaskDashboard() {
-  //   const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  //dashboard is a value used to update the ID of each header.
+  // dashboard keeps track of the desired task list a user is trying to view
   const [dashboard, setDashboard] = useState("New");
 
-  //   const newTasks = tasks.filter((task) => task.status === "created");
-  //   const inProgressTasks = tasks.filter((task) => task.status === "in progress");
-  //   const completedTasks = tasks.filter((task) => task.status === "completed");
-  //   const addTask = (title, description) => {
-  //     setTasks([...tasks, { title, description, status: "created" }]);
-  //   };
+  // const newTasks = tasks.filter((task) => task.status === "created");
+  const createTask = (title, description, priority) => {
+    console.log("success");
+    setTasks((prev) => [
+      ...prev,
+      { title, description, priority, status: "created" },
+    ]);
+  };
 
   return (
     <div className="task-dashboard">
@@ -43,7 +47,7 @@ export default function TaskDashboard() {
         </h2>
       </div>
       <div className="task-display">
-        <TaskRenderer dashboardValue={dashboard} />
+        <TaskRenderer dashboardValue={dashboard} onCreate={createTask} />
       </div>
     </div>
   );
