@@ -9,6 +9,7 @@ export default function TaskRenderer({
   onClear,
   tasks,
 }) {
+  console.log("Displaying tasks " , tasks);
   let rendered;
   if (dashboardValue === "create-new") {
     rendered = (
