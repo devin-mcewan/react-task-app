@@ -1,4 +1,4 @@
-.task-card-container {
+.task-card {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -9,21 +9,22 @@
   margin: 10px;
   min-height: 250px;
 }
-.task-card-container:hover {
+
+.task-card:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
-.task-button-container {
+
+/* Start/Delete buttons */
+.task-card-button-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 10px;
 }
-
-.task-button-container button {
+.task-card-button-container button {
   padding: 5px;
   margin: 0 10px;
 }
-
 #delete {
   padding: 10px 20px;
   background-color: #d9544fab;
@@ -34,13 +35,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 #delete:hover {
   background-color: #db2f29;
   color: white;
   box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
 }
-
 #start {
   padding: 10px 20px;
   background-color: #4fd97dd2;

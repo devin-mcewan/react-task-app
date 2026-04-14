@@ -21,6 +21,15 @@ export default function TaskDashboard() {
     ]);
   };
 
+  const logTasks = () => {
+    tasks.forEach((task) => {
+      console.log("Task Title: " + task.title);
+      console.log("Task Description: " + task.description);
+      console.log("Task Priority: " + task.priority);
+      console.log("Task Status: " + task.status);
+    });
+  };
+
   const eraseTasks = () => {
     console.log("clearing all tasks");
     setTasks([]);
@@ -60,6 +69,7 @@ export default function TaskDashboard() {
           dashboardValue={dashboard}
           onCreate={createTask}
           onClear={eraseTasks}
+          onLog={logTasks}
         />
       </div>
     </div>

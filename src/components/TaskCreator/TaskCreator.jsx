@@ -3,11 +3,10 @@ import { useState } from "react";
 import "./TaskCreator.css";
 import TaskCard from "../TaskCard/TaskCard";
 
-export default function InputContainer({ onCreate, onClear }) {
+export default function InputContainer({ onCreate, onClear, onLog }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("low");
-
   return (
     <div className="tasks">
       <div className="input-container">
@@ -45,6 +44,7 @@ export default function InputContainer({ onCreate, onClear }) {
             onCreate(id, title, description, priority);
             setTitle("");
             setDescription("");
+            setPriority("low");
           }}
         >
           Add Task
@@ -58,6 +58,14 @@ export default function InputContainer({ onCreate, onClear }) {
         }}
       >
         CLEAR ALL TASKS
+      </button>
+      <button
+        className="show"
+        onClick={() => {
+          onLog();
+        }}
+      >
+        SHOW TASKS
       </button>
       <TaskCard title="Title" description="Description" priority="Priority" />
     </div>

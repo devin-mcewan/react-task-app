@@ -73,6 +73,7 @@
   background-color: #2a5a8f;
 }
 
+/* debug buttons */
 .clear {
   padding: 10px 20px;
   background-color: #d9534f;
@@ -87,5 +88,21 @@
 .clear:hover {
   background-color: #db2f29;
   color: white;
+  box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
+}
+
+.show {
+  padding: 10px 20px;
+  background-color: #eeff8e;
+  color: black;
+  border: 2px solid #e1fa56;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.show:hover {
+  background-color: #d8f149;
   box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
 }
