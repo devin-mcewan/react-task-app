@@ -7,6 +7,12 @@
   padding: 20px;
 }
 
+.tasks h2 {
+  color: white;
+  margin: 10px;
+  padding: 10px;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -32,7 +38,7 @@
   border-radius: 6px;
   font-size: 1.5rem;
   outline: none;
-  width: 60%;
+  width: 70%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   margin: 10px 0;
@@ -51,6 +57,7 @@
   text-align: center;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
 }
 
 .input-container button {

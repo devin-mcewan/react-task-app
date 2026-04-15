@@ -18,22 +18,24 @@ export default function TaskRenderer({
       </div>
     );
     return rendered;
-  } else if (dashboardValue === "New") {
+  } else {
     rendered = (
-      <div className="task-container">
-        <div className="task-container-header">
+      <div className="task-page">
+        <div className="task-page-header">
           <h2>{dashboardValue} tasks</h2>
           <p>Displaying all items marked as {dashboardValue}</p>
         </div>
-        <div className="task-card-container">
-          {tasks.forEach((task) => {
-            console.log("Task loop running");
-            <TaskCard
-              title={task.title}
-              description={task.description}
-              priority={task.priority}
-            />;
-          })}
+        <div className="task-container">
+          {tasks
+            .filter((task) => task.status === dashboardValue)
+            .map((task) => (
+              <TaskCard
+                key={task.id}
+                title={task.title}
+                description={task.description}
+                priority={task.priority}
+              />
+            ))}
         </div>
       </div>
     );

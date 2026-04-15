@@ -10,15 +10,12 @@ export default function TaskDashboard() {
   const [dashboard, setDashboard] = useState("New");
 
   // const newTasks = tasks.filter((task) => task.status === "new");
-  const createTask = (id, title, description, priority) => {
-    if (!title || !description || !priority) {
+  const createTask = (task) => {
+    if (!task.title || !task.description || !task.priority) {
       alert("Please complete all fields");
       return;
     }
-    setTasks((prev) => [
-      ...prev,
-      { id, title, description, priority, status: "New" },
-    ]);
+    setTasks((prev) => [...prev, { ...task, status: "New" }]);
   };
 
   const logTasks = () => {
