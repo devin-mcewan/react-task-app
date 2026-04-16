@@ -43,7 +43,6 @@ export default function InputContainer({ onCreate, onClear, onLog }) {
         <button
           className="add-task-button"
           onClick={() => {
-            setTask({ ...task, id: Date.now() });
             onCreate(task);
             setTask({ id: "", title: "", description: "", priority: "Low" });
           }}
@@ -53,7 +52,7 @@ export default function InputContainer({ onCreate, onClear, onLog }) {
       </div>
       {/* DEBUG BUTTONS */}
       {/* Clear all tasks button */}
-      <button
+      {/* <button
         className="clear"
         onClick={() => {
           onClear();
@@ -61,7 +60,7 @@ export default function InputContainer({ onCreate, onClear, onLog }) {
         }}
       >
         CLEAR ALL TASKS
-      </button>
+      </button> */}
       {/* Show tasks debug button */}
       {/* <button
         className="show"
@@ -74,12 +73,7 @@ export default function InputContainer({ onCreate, onClear, onLog }) {
 
       {/* Demo Task Card */}
       <h2>Task Card Preview</h2>
-      <TaskCard
-        title={task.title}
-        description={task.description}
-        priority={task.priority}
-        isDemo={true}
-      />
+      <TaskCard task={task} isDemo={true} />
     </div>
   );
 }

@@ -26,7 +26,7 @@
   border: 3px solid #764ba2;
 }
 
-/* Start/Delete buttons */
+/* Start/Complete/Delete buttons */
 .task-card-button-container {
   display: flex;
   flex-direction: row;
@@ -34,7 +34,7 @@
   padding: 10px;
 }
 .task-card-button-container button {
-  padding: 5px;
+  width: 100px;
   margin: 0 10px;
 }
 #delete {
@@ -52,8 +52,8 @@
   color: white;
   box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3); /* Soft red shadow */
 }
-#start {
-  padding: 10px 20px;
+.status {
+  padding: 10px;
   background-color: #4fd97dd2;
   color: white; /* Modern red */
   border: 2px solid #44cc4f;
@@ -62,7 +62,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-#start:hover {
+.status:hover {
   background-color: #44cc4f;
   color: white;
   box-shadow: 0 4px 12px rgba(79, 217, 97, 0.3); /* Soft red shadow */

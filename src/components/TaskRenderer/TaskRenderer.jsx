@@ -6,8 +6,10 @@ import TaskCard from "../TaskCard/TaskCard.jsx";
 export default function TaskRenderer({
   dashboardValue,
   onCreate,
+  onDelete,
   onClear,
   onLog,
+  handleStatus,
   tasks,
 }) {
   let rendered;
@@ -23,17 +25,15 @@ export default function TaskRenderer({
       <div className="task-page">
         <div className="task-page-header">
           <h2>{dashboardValue} tasks</h2>
-          <p>Displaying all items marked as {dashboardValue}</p>
         </div>
         <div className="task-container">
           {tasks
             .filter((task) => task.status === dashboardValue)
             .map((task) => (
               <TaskCard
-                key={task.id}
-                title={task.title}
-                description={task.description}
-                priority={task.priority}
+                task={task}
+                handleStatus={handleStatus}
+                onDelete={onDelete}
               />
             ))}
         </div>

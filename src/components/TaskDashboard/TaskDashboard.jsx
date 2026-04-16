@@ -15,9 +15,35 @@ export default function TaskDashboard() {
       alert("Please complete all fields");
       return;
     }
-    setTasks((prev) => [...prev, { ...task, status: "New" }]);
+    setTasks((prev) => [...prev, { ...task, status: "New", id: Date.now() }]);
   };
 
+  const handleTaskStatus = (task) => {
+    const currentTask = tasks.find((t) => t.id === task.id);
+    if (currentTask.status === "New") {
+      console.log("starting task: " + currentTask.id);
+      currentTask.status = "In Progress";
+    } else if (currentTask.status === "In Progress") {
+      currentTask.status = "Completed";
+    } else {
+      currentTask.status = "In Progress";
+    }
+    setTasks([...tasks]);
+  };
+
+  const deleteTask = (task) => {
+    const currentTask = tasks.find((t) => t.id === task.id);
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this task?",
+    );
+    if (!confirmed) {
+      return;
+    } else {
+      console.log("deleting task: " + currentTask.title);
+      tasks.splice(tasks.indexOf(currentTask), 1);
+      setTasks([...tasks]);
+    }
+  };
   const logTasks = () => {
     tasks.forEach((task) => {
       console.log("Task Title: " + task.title);
@@ -65,8 +91,10 @@ export default function TaskDashboard() {
           tasks={tasks}
           dashboardValue={dashboard}
           onCreate={createTask}
+          onDelete={deleteTask}
           onClear={eraseTasks}
           onLog={logTasks}
+          handleStatus={handleTaskStatus}
         />
       </div>
     </div>
