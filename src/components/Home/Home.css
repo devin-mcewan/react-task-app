@@ -36,6 +36,44 @@ body {
   margin-top: 10px;
 }
 
+.welcome-header {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.get-started-button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #667eea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  background-color: #5a67d8;
+}
+
+.jump-to-tasks-button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #667eea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.jump-to-tasks-button:hover {
+  background-color: #5a67d8;
+}
+
 @media (max-width: 768px) {
   .home-container {
     padding: 30px 20px;
