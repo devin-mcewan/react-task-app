@@ -34,7 +34,7 @@
   padding: 10px;
 }
 .task-card-button-container button {
-  width: 100px;
+  max-width: 100px;
   margin: 0 10px;
 }
 #delete {
@@ -82,4 +82,19 @@
 .toggle:hover {
   background-color: rgb(196, 199, 1);
   box-shadow: 0 4px 12px rgba(196, 217, 79, 0.685); /* Soft red shadow */
+}
+
+.postpone {
+  padding: 10px;
+  background-color: #f0ad4ed2;
+  color: white; /* Modern red */
+  border: 2px solid #f0ad4e;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.postpone:hover {
+  background-color: #f0ad4e;
+  box-shadow: 0 4px 12px rgba(240, 173, 78, 0.685); /* Soft red shadow */
 }

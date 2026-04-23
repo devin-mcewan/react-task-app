@@ -31,6 +31,15 @@ export default function TaskCard({
             </button>
           ) : task.status === "In Progress" ? (
             <div>
+              <button
+                className="postpone"
+                onClick={() => {
+                  const postpone = true;
+                  handleStatus(task, postpone);
+                }}
+              >
+                POSTPONE
+              </button>
               <button className="toggle" onClick={() => handleToggle(task)}>
                 {task.pause ? "RESUME" : "PAUSE"}
               </button>

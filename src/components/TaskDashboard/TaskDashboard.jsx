@@ -18,14 +18,16 @@ export default function TaskDashboard() {
     setTasks((prev) => [...prev, { ...task, status: "New", id: Date.now() }]);
   };
 
-  const handleTaskStatus = (task) => {
+  const handleTaskStatus = (task, postpone) => {
     const currentTask = tasks.find((t) => t.id === task.id);
     if (currentTask.status === "New") {
       console.log("starting task: " + currentTask.id);
       currentTask.status = "In Progress";
       currentTask.pause = false;
     } else if (currentTask.status === "In Progress") {
-      currentTask.status = "Completed";
+      postpone
+        ? (currentTask.status = "New")
+        : (currentTask.status = "Completed");
       currentTask.pause = false;
     } else {
       currentTask.status = "In Progress";
