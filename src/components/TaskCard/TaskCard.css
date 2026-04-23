@@ -67,3 +67,19 @@
   color: white;
   box-shadow: 0 4px 12px rgba(79, 217, 97, 0.3); /* Soft red shadow */
 }
+
+.toggle {
+  padding: 10px;
+  background-color: #ebd510d2;
+  color: white; /* Modern red */
+  border: 2px solid rgb(196, 199, 1);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle:hover {
+  background-color: rgb(196, 199, 1);
+  box-shadow: 0 4px 12px rgba(196, 217, 79, 0.685); /* Soft red shadow */
+}

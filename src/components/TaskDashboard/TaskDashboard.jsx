@@ -23,11 +23,21 @@ export default function TaskDashboard() {
     if (currentTask.status === "New") {
       console.log("starting task: " + currentTask.id);
       currentTask.status = "In Progress";
+      currentTask.pause = false;
     } else if (currentTask.status === "In Progress") {
       currentTask.status = "Completed";
+      currentTask.pause = false;
     } else {
       currentTask.status = "In Progress";
+      currentTask.pause = false;
     }
+    setTasks([...tasks]);
+  };
+
+  // "Toggle" is referring to the tasks "Pause/Resume" status.
+  const handleToggle = (task) => {
+    const currentTask = tasks.find((t) => t.id === task.id);
+    currentTask.pause = !currentTask.pause;
     setTasks([...tasks]);
   };
 
@@ -95,6 +105,7 @@ export default function TaskDashboard() {
           onClear={eraseTasks}
           onLog={logTasks}
           handleStatus={handleTaskStatus}
+          handleToggle={handleToggle}
         />
       </div>
     </div>

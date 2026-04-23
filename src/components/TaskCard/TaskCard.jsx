@@ -1,6 +1,12 @@
 import React from "react";
 import "./TaskCard.css";
-export default function TaskCard({ task, isDemo, handleStatus, onDelete }) {
+export default function TaskCard({
+  task,
+  isDemo,
+  handleStatus,
+  onDelete,
+  handleToggle,
+}) {
   return (
     <div className="task-card">
       <h3>{task.title ? task.title : "Title"}</h3>
@@ -24,13 +30,18 @@ export default function TaskCard({ task, isDemo, handleStatus, onDelete }) {
               START
             </button>
           ) : task.status === "In Progress" ? (
-            <button
-              className="status"
-              id="complete"
-              onClick={() => handleStatus(task)}
-            >
-              COMPLETE
-            </button>
+            <div>
+              <button className="toggle" onClick={() => handleToggle(task)}>
+                {task.pause ? "RESUME" : "PAUSE"}
+              </button>
+              <button
+                className="status"
+                id="complete"
+                onClick={() => handleStatus(task)}
+              >
+                COMPLETE
+              </button>
+            </div>
           ) : (
             <button
               className="status"

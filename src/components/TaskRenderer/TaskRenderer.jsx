@@ -10,6 +10,7 @@ export default function TaskRenderer({
   onClear,
   onLog,
   handleStatus,
+  handleToggle,
   tasks,
 }) {
   let rendered;
@@ -33,6 +34,7 @@ export default function TaskRenderer({
               <TaskCard
                 task={task}
                 handleStatus={handleStatus}
+                handleToggle={handleToggle}
                 onDelete={onDelete}
               />
             ))}
