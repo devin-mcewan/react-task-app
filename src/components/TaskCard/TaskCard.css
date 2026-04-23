@@ -8,12 +8,14 @@
   background-color: rgba(255, 255, 255, 0.8);
   margin: 10px;
   min-height: 250px;
+  min-width: 250px;
   padding: 10px;
 }
 .task-card h3 {
   text-decoration: underline;
   padding: 10px;
   margin: 10px;
+  text-align: center;
 }
 
 .task-card p {
@@ -28,13 +30,15 @@
 
 /* Start/Complete/Delete buttons */
 .task-card-button-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 10px;
+  height: 50%;
 }
 .task-card-button-container button {
-  max-width: 100px;
+  max-width: 100%;
   margin: 0 10px;
 }
 #delete {
@@ -97,4 +101,15 @@
 .postpone:hover {
   background-color: #f0ad4e;
   box-shadow: 0 4px 12px rgba(240, 173, 78, 0.685); /* Soft red shadow */
+}
+
+.additional-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.additional-buttons-container button {
+  margin: 5px;
 }

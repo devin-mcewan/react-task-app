@@ -30,7 +30,7 @@ export default function TaskCard({
               START
             </button>
           ) : task.status === "In Progress" ? (
-            <div>
+            <div className="additional-buttons-container">
               <button
                 className="postpone"
                 onClick={() => {
