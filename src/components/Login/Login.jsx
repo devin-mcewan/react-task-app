@@ -2,13 +2,15 @@ import React from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useUserContext } from "../UserContext";
 
 export default function Login({ handleLogin }) {
+  const { state, dispatch } = useUserContext();
   const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "Username",
     _password: "Password",
-    loggedIn: false,
   });
 
   return (
@@ -39,10 +41,14 @@ export default function Login({ handleLogin }) {
         <button
           className="login-button"
           onClick={() => {
-            handleLogin(user) === false
-              ? alert("Loggin Error")
-              : (alert("Logged in successfully!"), navigate("/tasks"));
+            dispatch({ type: "LOGIN", payload: user });
+            navigate("/tasks");
           }}
+          // onClick={() => {
+          //   handleLogin(user) === false
+          //     ? alert("Loggin Error")
+          //     : (alert("Logged in successfully!"), navigate("/tasks"));
+          // }}
         >
           Log In
         </button>

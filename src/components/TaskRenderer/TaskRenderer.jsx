@@ -2,6 +2,7 @@ import React from "react";
 import "./TaskRenderer.css";
 import TaskCreator from "../TaskCreator/TaskCreator.jsx";
 import TaskCard from "../TaskCard/TaskCard.jsx";
+import { useUserContext } from "../UserContext.jsx";
 
 export default function TaskRenderer({
   dashboardValue,
@@ -11,8 +12,13 @@ export default function TaskRenderer({
   onLog,
   handleStatus,
   handleToggle,
-  tasks,
 }) {
+  const { state, dispatch } = useUserContext();
+
+  const currentUser = state.users.find((user) =>
+    user.loggedIn === true ? user.username : null,
+  );
+
   let rendered;
   if (dashboardValue === "create-new") {
     rendered = (
@@ -28,7 +34,7 @@ export default function TaskRenderer({
           <h2>{dashboardValue} tasks</h2>
         </div>
         <div className="task-container">
-          {tasks
+          {state.tasks
             .filter((task) => task.status === dashboardValue)
             .map((task) => (
               <TaskCard

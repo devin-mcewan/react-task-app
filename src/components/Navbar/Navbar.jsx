@@ -7,7 +7,11 @@ import TaskDashboard from "../TaskDashboard/TaskDashboard";
 import { useState } from "react";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import { useUserContext } from "../UserContext";
+
 export default function Navbar() {
+  const { state, dispatch } = useUserContext();
+
   const [users, setUsers] = useState([
     { username: "test", password: "test", loggedIn: false },
     { username: "devin", password: "password", loggedIn: false },
@@ -81,7 +85,7 @@ export default function Navbar() {
             <li className="nav-item">
               <Link to="/about">About</Link>
             </li>
-            {User.loggedIn ? (
+            {state.currentUser.loggedIn ? (
               <div className="additional-items">
                 <li className="nav-item">
                   <Link to="/tasks">Tasks</Link>
@@ -89,7 +93,11 @@ export default function Navbar() {
                 <li
                   className="nav-item"
                   id="logout-button"
-                  onClick={() => handleLogout()}
+                  onClick={() =>
+                    dispatch({
+                      type: "LOGOUT",
+                    })
+                  }
                 >
                   <Link to="/">Sign Out</Link>
                 </li>

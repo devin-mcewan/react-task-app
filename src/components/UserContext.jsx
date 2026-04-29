@@ -3,8 +3,6 @@ import React, { createContext, useContext, useReducer } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
-
   // Initializing state with a default user and a default task.
   // The user has a unique userID, a username, a password, and a loggedIn status.
   // The task has a unique taskID, a title, a description, a priority level, a status, and is associated with the userID of the default user.
@@ -20,7 +18,9 @@ export const UserProvider = ({ children }) => {
         userID: 0,
       },
     ],
+    currentUser: { username: "", loggedIn: false },
   };
+  const [state, dispatch] = useReducer(userReducer, initialState);
 
   // The userReducer will handle all actions related to user management, such as creating a new user, logging in, and logging out.
 
@@ -35,22 +35,29 @@ export const UserProvider = ({ children }) => {
           ...state,
           users: state.users.map((user) =>
             user.username === action.payload.username &&
-            user.password === action.payload.password
+            user.password === action.payload._password
               ? //   follow up about this: I do not want to return a user's password
                 { ...user, loggedIn: true }
               : alert(
-                  "unable to log in, please make sure your username and password are correct",
+                  "Login failed: Please check your username and password and try again.",
                 ),
           ),
+          currentUser: {
+            username: action.payload.username,
+            loggedIn: true,
+          },
         };
+
       case "LOGOUT":
         return {
           ...state,
           users: state.users.map((user) =>
-            user.loggedIn
+            user.username === state.currentUser.username &&
+            user.loggedIn === true
               ? { ...user, loggedIn: false }
-              : alert("unable to log out, no user is currently logged in"),
+              : alert("Logout failed: No user is currently logged in."),
           ),
+          currentUser: { username: "", loggedIn: false },
         };
       case "CREATE_TASK":
         // new tasks will be created with a unique taskID, the title, description, priority, and status from the action payload,
