@@ -4,10 +4,10 @@ import TaskRenderer from "../TaskRenderer/TaskRenderer";
 import "./TaskDashboard.css";
 
 export default function TaskDashboard() {
-  const [tasks, setTasks] = useState([]);
   //dashboard is a value used to update the ID of each header.
   // dashboard keeps track of the desired task list a user is trying to view
   const [dashboard, setDashboard] = useState("New");
+  const [tasks, setTasks] = useState([]);
 
   // const newTasks = tasks.filter((task) => task.status === "new");
   const createTask = (task) => {
