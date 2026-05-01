@@ -47,7 +47,6 @@ export const UserProvider = ({ children }) => {
             loggedIn: true,
           },
         };
-
       case "LOGOUT":
         return {
           ...state,
