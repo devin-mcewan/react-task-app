@@ -26,20 +26,31 @@ export const UserProvider = ({ children }) => {
 
   function userReducer(state, action) {
     switch (action.type) {
-      case "CREATE_USER":
+      case "CREATE_USER": {
+        const response = action.payload;
         // new users will be created with a unique userID, the username and password from the action payload, and loggedIn set to true.
-        if (
-          state.users.find((user) => user.username === action.payload.username)
-        ) {
+        if (state.users.find((user) => user.username === response.username)) {
           alert("Username already exists. Please choose a different username.");
-          return false;
+          return state;
         } else {
-          state.currentUser = {
-            username: action.payload.username,
-            loggedIn: true,
+          console.log("new user", response);
+          return {
+            ...state,
+            users: [
+              ...state.users,
+              {
+                userID: Date.now(),
+                username: response.username,
+                password: response._password,
+              },
+            ],
+            currentUser: {
+              username: action.payload.username,
+              loggedIn: true,
+            },
           };
-          return { ...state, users: [...state.users, action.payload] };
         }
+      }
       case "LOGIN": {
         const authenticatedUser = state.users.find(
           (user) =>
@@ -48,6 +59,7 @@ export const UserProvider = ({ children }) => {
         )
           ? action.payload
           : false;
+
         if (authenticatedUser) {
           return {
             ...state,
@@ -72,7 +84,7 @@ export const UserProvider = ({ children }) => {
             },
           };
         } else {
-          return state;
+          return { ...state };
         }
       case "CREATE_TASK":
         // new tasks will be created with a unique taskID, the title, description, priority, and status from the action payload,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,12 +7,16 @@ import { useUserContext } from "../UserContext";
 export default function SignUp() {
   const { state, dispatch } = useUserContext();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (state.currentUser.loggedIn) {
+      navigate("/tasks");
+    }
+  }, [state.currentUser.loggedIn]);
 
   const [user, setUser] = useState({
     username: "",
     _password: "",
     _confirmedPassword: "",
-    loggedIn: false,
   });
   return (
     <div className="SignUpContainer">
@@ -64,7 +68,6 @@ export default function SignUp() {
               return;
             } else {
               dispatch({ type: "CREATE_USER", payload: user });
-              navigate("/tasks");
             }
           }}
         >
