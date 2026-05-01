@@ -2,9 +2,12 @@ import React from "react";
 import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../UserContext";
 
-export default function SignUp({ handleCreate }) {
+export default function SignUp() {
+  const { state, dispatch } = useUserContext();
   const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     _password: "",
@@ -51,19 +54,18 @@ export default function SignUp({ handleCreate }) {
         <button
           className="create-account-button"
           onClick={() => {
-            let result = handleCreate(user);
-            result === "Username Error"
-              ? alert("Error creating account: Username is required")
-              : result === "Password Error"
-                ? alert("Error creating account: Password is required")
-                : result === "Confirmed Password Error"
-                  ? alert(
-                      "Error creating account: Please confirm your password",
-                    )
-                  : result === "Passwords Mismatched"
-                    ? alert("Error creating account: Passwords do not match")
-                    : (alert("Account created successfully!"),
-                      navigate("/tasks"));
+            setUser({ ...user, userID: Date.now() });
+            if (!user.username || !user._password) {
+              alert("Please enter a Username or Password");
+            } else if (user._password !== user._confirmedPassword) {
+              alert(
+                "Passwords do not match, please check your passwords and try again",
+              );
+              return;
+            } else {
+              dispatch({ type: "CREATE_USER", payload: user });
+              navigate("/tasks");
+            }
           }}
         >
           Create Account

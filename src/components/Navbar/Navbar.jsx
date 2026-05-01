@@ -20,34 +20,34 @@ export default function Navbar() {
     loggedIn: false,
   });
 
-  const handleCreateUser = (user) => {
-    if (!user.username) {
-      return "Username Error";
-    } else if (!user._password) {
-      console.error("No Password");
-      return "Password Error";
-    } else if (!user._confirmedPassword) {
-      return "Confirmed Password Error";
-    } else if (user._password !== user._confirmedPassword) {
-      return "Passwords Mismatched";
-    } else {
-      // If all fields are valid, we create the user and log them in immediately.
-      setUsers(
-        (prev) => [
-          ...prev,
-          { username: user.username, password: user._password, loggedIn: true },
-        ],
-        // After creating the user, we want to log them in immediately.
-        setUser({
-          ...User,
-          username: user.username,
-          loggedIn: true,
-        }),
-      );
+  // const handleCreateUser = (user) => {
+  //   if (!user.username) {
+  //     return "Username Error";
+  //   } else if (!user._password) {
+  //     console.error("No Password");
+  //     return "Password Error";
+  //   } else if (!user._confirmedPassword) {
+  //     return "Confirmed Password Error";
+  //   } else if (user._password !== user._confirmedPassword) {
+  //     return "Passwords Mismatched";
+  //   } else {
+  //     // If all fields are valid, we create the user and log them in immediately.
+  //     setUsers(
+  //       (prev) => [
+  //         ...prev,
+  //         { username: user.username, password: user._password, loggedIn: true },
+  //       ],
+  //       // After creating the user, we want to log them in immediately.
+  //       setUser({
+  //         ...User,
+  //         username: user.username,
+  //         loggedIn: true,
+  //       }),
+  //     );
 
-      return "Success";
-    }
-  };
+  //     return "Success";
+  //   }
+  // };
 
   const handleLogin = (user) => {
     let loginStatus = false;
@@ -93,11 +93,7 @@ export default function Navbar() {
                 <li
                   className="nav-item"
                   id="logout-button"
-                  onClick={() =>
-                    dispatch({
-                      type: "LOGOUT",
-                    })
-                  }
+                  onClick={() => dispatch({ type: "LOGOUT" })}
                 >
                   <Link to="/">Sign Out</Link>
                 </li>
@@ -115,10 +111,7 @@ export default function Navbar() {
         <Route path="/tasks" element={<TaskDashboard />} />
         <Route path="/about" element={<Features />} />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route
-          path="/sign-up"
-          element={<SignUp handleCreate={handleCreateUser} />}
-        />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
   // The user has a unique userID, a username, a password, and a loggedIn status.
   // The task has a unique taskID, a title, a description, a priority level, a status, and is associated with the userID of the default user.
   const initialState = {
-    users: [{ userID: 0, username: "test", password: "test", loggedIn: false }],
+    users: [{ userID: 0, username: "test", password: "test" }],
     tasks: [
       {
         taskID: 0,
@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
         userID: 0,
       },
     ],
-    currentUser: { username: "", loggedIn: false },
+    currentUser: { loggedIn: false },
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
 
@@ -28,36 +28,52 @@ export const UserProvider = ({ children }) => {
     switch (action.type) {
       case "CREATE_USER":
         // new users will be created with a unique userID, the username and password from the action payload, and loggedIn set to true.
-        return { ...state, users: [...state.users, action.payload] };
-      case "LOGIN":
-        // To log in, we will find the user in the state that matches the username and password from the action payload, and set their loggedIn status to true.
-        return {
-          ...state,
-          users: state.users.map((user) =>
-            user.username === action.payload.username &&
-            user.password === action.payload._password
-              ? //   follow up about this: I do not want to return a user's password
-                { ...user, loggedIn: true }
-              : alert(
-                  "Login failed: Please check your username and password and try again.",
-                ),
-          ),
-          currentUser: {
+        if (
+          state.users.find((user) => user.username === action.payload.username)
+        ) {
+          alert("Username already exists. Please choose a different username.");
+          return false;
+        } else {
+          state.currentUser = {
             username: action.payload.username,
             loggedIn: true,
-          },
-        };
-      case "LOGOUT":
+          };
+          return { ...state, users: [...state.users, action.payload] };
+        }
+      case "LOGIN": {
+        const authenticatedUser = state.users.find(
+          (user) =>
+            user.username === action.payload.username &&
+            user.password === action.payload._password,
+        )
+          ? action.payload
+          : false;
+        if (authenticatedUser) {
+          return {
+            ...state,
+            currentUser: {
+              username: authenticatedUser.username,
+              loggedIn: true,
+            },
+          };
+        }
         return {
           ...state,
-          users: state.users.map((user) =>
-            user.username === state.currentUser.username &&
-            user.loggedIn === true
-              ? { ...user, loggedIn: false }
-              : alert("Logout failed: No user is currently logged in."),
-          ),
-          currentUser: { username: "", loggedIn: false },
+          currentUser: { loggedIn: false },
         };
+      }
+      case "LOGOUT":
+        if (state.currentUser.loggedIn) {
+          return {
+            ...state,
+            currentUser: {
+              username: "",
+              loggedIn: false,
+            },
+          };
+        } else {
+          return state;
+        }
       case "CREATE_TASK":
         // new tasks will be created with a unique taskID, the title, description, priority, and status from the action payload,
         // and associated with the userID of the currently logged in user.

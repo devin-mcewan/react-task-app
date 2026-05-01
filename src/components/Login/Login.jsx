@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useUserContext } from "../UserContext";
 
-export default function Login({ handleLogin }) {
+export default function Login() {
   const { state, dispatch } = useUserContext();
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    username: "Username",
-    _password: "Password",
+    username: "",
+    _password: "",
   });
-
+  useEffect(() => {
+    if (state.currentUser.loggedIn) {
+      navigate("/tasks");
+    }
+  }, [state.currentUser.loggedIn]);
   return (
     <div className="LoginContainer">
       <div className="login">
@@ -21,10 +25,10 @@ export default function Login({ handleLogin }) {
         <label className="form-label" htmlFor="username">
           Username
         </label>
-
         <input
           type="text"
           className="username"
+          placeholder="Enter your username..."
           value={user.username ? user.username : ""}
           onChange={(e) => setUser({ ...user, username: e.target.value })}
         ></input>
@@ -41,14 +45,12 @@ export default function Login({ handleLogin }) {
         <button
           className="login-button"
           onClick={() => {
-            dispatch({ type: "LOGIN", payload: user });
-            navigate("/tasks");
+            if (!user.username || !user._password) {
+              alert("Please check your Username or Password and try again");
+            } else {
+              dispatch({ type: "LOGIN", payload: user });
+            }
           }}
-          // onClick={() => {
-          //   handleLogin(user) === false
-          //     ? alert("Loggin Error")
-          //     : (alert("Logged in successfully!"), navigate("/tasks"));
-          // }}
         >
           Log In
         </button>
