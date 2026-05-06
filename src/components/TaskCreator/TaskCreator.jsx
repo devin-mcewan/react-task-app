@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import "./TaskCreator.css";
 import TaskCard from "../TaskCard/TaskCard";
+import { useUserContext } from "../UserContext";
 
 export default function InputContainer({ onCreate, onClear, onLog }) {
+  const { state, dispatch } = useUserContext();
   const [task, setTask] = useState({
     id: "",
     title: "",
@@ -43,34 +45,13 @@ export default function InputContainer({ onCreate, onClear, onLog }) {
         <button
           className="add-task-button"
           onClick={() => {
-            onCreate(task);
-            setTask({ id: "", title: "", description: "", priority: "Low" });
+            (dispatch({ type: "CREATE_TASK", payload: task }),
+              setTask({ id: "", title: "", description: "", priority: "Low" }));
           }}
         >
           Add Task
         </button>
       </div>
-      {/* DEBUG BUTTONS */}
-      {/* Clear all tasks button */}
-      {/* <button
-        className="clear"
-        onClick={() => {
-          onClear();
-          alert("tasks cleared");
-        }}
-      >
-        CLEAR ALL TASKS
-      </button> */}
-      {/* Show tasks debug button */}
-      {/* <button
-        className="show"
-        onClick={() => {
-          onLog();
-        }}
-      >
-        SHOW TASKS
-      </button> */}
-
       {/* Demo Task Card */}
       <h2>Task Card Preview</h2>
       <TaskCard task={task} isDemo={true} />

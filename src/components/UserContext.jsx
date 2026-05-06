@@ -86,10 +86,27 @@ export const UserProvider = ({ children }) => {
         } else {
           return { ...state };
         }
-      case "CREATE_TASK":
+      case "CREATE_TASK": {
+        const response = action.payload;
+        console.log("task received! ");
+        console.log(response);
+
+        let newTask = {};
+        !response.title || response.description || !response
+          ? (newTask = {
+              taskID: Date.now(),
+              title: response.title,
+              description: response.description,
+              priority: response.priority,
+              status: "New",
+              userID: state.currentUser.userID,
+            })
+          : alert("Please complete all fields");
+        console.log(newTask);
         // new tasks will be created with a unique taskID, the title, description, priority, and status from the action payload,
         // and associated with the userID of the currently logged in user.
-        return { ...state, tasks: [...state.tasks, action.payload] };
+        return { ...state, tasks: [...state.tasks, newTask] };
+      }
       //case "EDIT_TASK":
       case "DELETE_TASK":
         // To delete a task, we will filter out the task from the state that matches the taskID from the action payload.
