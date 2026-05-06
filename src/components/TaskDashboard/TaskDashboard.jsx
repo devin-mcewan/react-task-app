@@ -8,15 +8,7 @@ export default function TaskDashboard() {
   // dashboard keeps track of the desired task list a user is trying to view
   const [dashboard, setDashboard] = useState("New");
   const [tasks, setTasks] = useState([]);
-
-  // const newTasks = tasks.filter((task) => task.status === "new");
-  const createTask = (task) => {
-    if (!task.title || !task.description || !task.priority) {
-      alert("Please complete all fields");
-      return;
-    }
-    setTasks((prev) => [...prev, { ...task, status: "New", id: Date.now() }]);
-  };
+  // const newTasks = tasks.filter((task) => task.status === "new");  };
 
   const handleTaskStatus = (task, postpone) => {
     const currentTask = tasks.find((t) => t.id === task.id);
@@ -102,7 +94,6 @@ export default function TaskDashboard() {
         <TaskRenderer
           tasks={tasks}
           dashboardValue={dashboard}
-          onCreate={createTask}
           onDelete={deleteTask}
           onClear={eraseTasks}
           onLog={logTasks}

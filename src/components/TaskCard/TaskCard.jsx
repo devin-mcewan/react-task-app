@@ -1,12 +1,8 @@
 import React from "react";
 import "./TaskCard.css";
-export default function TaskCard({
-  task,
-  isDemo,
-  handleStatus,
-  onDelete,
-  handleToggle,
-}) {
+import { useUserContext } from "../UserContext";
+export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
+  const { state, dispatch } = useUserContext();
   return (
     <div className="task-card">
       <h3>{task.title ? task.title : "Title"}</h3>
@@ -18,7 +14,14 @@ export default function TaskCard({
         <div></div>
       ) : (
         <div className="task-card-button-container">
-          <button id="delete" onClick={() => onDelete(task)}>
+          <button
+            id="delete"
+            onClick={() => {
+              if (confirm("Are you sure you want to delete this task?")) {
+                dispatch({ type: "DELETE_TASK", payload: task });
+              }
+            }}
+          >
             DELETE
           </button>
           {task.status === "New" ? (

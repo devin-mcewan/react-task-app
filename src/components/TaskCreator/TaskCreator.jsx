@@ -4,7 +4,7 @@ import "./TaskCreator.css";
 import TaskCard from "../TaskCard/TaskCard";
 import { useUserContext } from "../UserContext";
 
-export default function InputContainer({ onCreate, onClear, onLog }) {
+export default function InputContainer({ onClear, onLog }) {
   const { state, dispatch } = useUserContext();
   const [task, setTask] = useState({
     id: "",
