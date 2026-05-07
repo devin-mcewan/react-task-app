@@ -19,8 +19,6 @@ export default function Navbar() {
   const [User, setUser] = useState({
     loggedIn: false,
   });
-
-  // const handleCreateUser = (user) => {
   //   if (!user.username) {
   //     return "Username Error";
   //   } else if (!user._password) {
@@ -64,13 +62,6 @@ export default function Navbar() {
         (loginStatus = true))
       : (console.log("Login failed"), (loginStatus = false));
     return loginStatus;
-  };
-
-  const handleLogout = () => {
-    setUser({
-      ...User,
-      loggedIn: false,
-    });
   };
 
   return (

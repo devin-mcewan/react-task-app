@@ -104,6 +104,25 @@ export const UserProvider = ({ children }) => {
         // and associated with the userID of the currently logged in user.
         return { ...state, tasks: [...state.tasks, newTask] };
       }
+      case "TOGGLE_STATUS": {
+        const response = action.payload;
+        const updatedTasks = state.tasks.map((t) =>
+          t.taskID === response.taskID
+            ? {
+                ...t,
+                status:
+                  t.status === "New"
+                    ? "In Progress"
+                    : t.status === "In Progress"
+                      ? "Completed"
+                      : t.status === "Completed"
+                        ? "In Progress"
+                        : t.status,
+              }
+            : t,
+        );
+        return { ...state, tasks: updatedTasks };
+      }
       //case "EDIT_TASK":
       case "DELETE_TASK": {
         const response = action.payload;

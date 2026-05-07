@@ -4,14 +4,7 @@ import TaskCreator from "../TaskCreator/TaskCreator.jsx";
 import TaskCard from "../TaskCard/TaskCard.jsx";
 import { useUserContext } from "../UserContext.jsx";
 
-export default function TaskRenderer({
-  dashboardValue,
-  onDelete,
-  onClear,
-  onLog,
-  handleStatus,
-  handleToggle,
-}) {
+export default function TaskRenderer({ dashboardValue, handleToggle }) {
   const { state, dispatch } = useUserContext();
   useEffect(() => {}, [state.tasks]);
   const currentUser = state.users.find((user) =>
@@ -22,7 +15,7 @@ export default function TaskRenderer({
   if (dashboardValue === "create-new") {
     rendered = (
       <div>
-        <TaskCreator onClear={onClear} onLog={onLog} />
+        <TaskCreator />
       </div>
     );
     return rendered;
@@ -36,12 +29,7 @@ export default function TaskRenderer({
           {state.tasks
             .filter((task) => task.status === dashboardValue)
             .map((task) => (
-              <TaskCard
-                task={task}
-                handleStatus={handleStatus}
-                handleToggle={handleToggle}
-                onDelete={onDelete}
-              />
+              <TaskCard task={task} handleToggle={handleToggle} />
             ))}
         </div>
       </div>

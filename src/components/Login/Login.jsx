@@ -14,6 +14,8 @@ export default function Login() {
   });
   useEffect(() => {
     if (state.currentUser.loggedIn) {
+      console.log("navigating to tasks for ", state.currentUser.username);
+
       navigate("/tasks");
     }
   }, [state.currentUser.loggedIn]);

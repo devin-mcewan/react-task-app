@@ -1,7 +1,7 @@
 import React from "react";
 import "./TaskCard.css";
 import { useUserContext } from "../UserContext";
-export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
+export default function TaskCard({ task, isDemo, handleToggle }) {
   const { state, dispatch } = useUserContext();
   return (
     <div className="task-card">
@@ -28,7 +28,7 @@ export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
             <button
               className="status"
               id="start"
-              onClick={() => handleStatus(task)}
+              onClick={() => dispatch({ type: "TOGGLE_STATUS", payload: task })}
             >
               START
             </button>
@@ -38,7 +38,7 @@ export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
                 className="postpone"
                 onClick={() => {
                   const postpone = true;
-                  handleStatus(task, postpone);
+                  // dispatch({ type: "TOGGLE_STATUS", payload: task });
                 }}
               >
                 POSTPONE
@@ -49,7 +49,9 @@ export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
               <button
                 className="status"
                 id="complete"
-                onClick={() => handleStatus(task)}
+                onClick={() =>
+                  dispatch({ type: "TOGGLE_STATUS", payload: task })
+                }
               >
                 COMPLETE
               </button>
@@ -58,7 +60,7 @@ export default function TaskCard({ task, isDemo, handleStatus, handleToggle }) {
             <button
               className="status"
               id="reset"
-              onClick={() => handleStatus(task)}
+              onClick={() => dispatch({ type: "TOGGLE_STATUS", payload: task })}
             >
               OPEN TASK
             </button>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import TaskCreator from "../TaskCreator/TaskCreator";
 import TaskRenderer from "../TaskRenderer/TaskRenderer";
 import "./TaskDashboard.css";
-
 export default function TaskDashboard() {
   //dashboard is a value used to update the ID of each header.
   // dashboard keeps track of the desired task list a user is trying to view
@@ -10,56 +9,11 @@ export default function TaskDashboard() {
   const [tasks, setTasks] = useState([]);
   // const newTasks = tasks.filter((task) => task.status === "new");  };
 
-  const handleTaskStatus = (task, postpone) => {
-    const currentTask = tasks.find((t) => t.id === task.id);
-    if (currentTask.status === "New") {
-      console.log("starting task: " + currentTask.id);
-      currentTask.status = "In Progress";
-      currentTask.pause = false;
-    } else if (currentTask.status === "In Progress") {
-      postpone
-        ? (currentTask.status = "New")
-        : (currentTask.status = "Completed");
-      currentTask.pause = false;
-    } else {
-      currentTask.status = "In Progress";
-      currentTask.pause = false;
-    }
-    setTasks([...tasks]);
-  };
-
   // "Toggle" is referring to the tasks "Pause/Resume" status.
   const handleToggle = (task) => {
     const currentTask = tasks.find((t) => t.id === task.id);
     currentTask.pause = !currentTask.pause;
     setTasks([...tasks]);
-  };
-
-  const deleteTask = (task) => {
-    const currentTask = tasks.find((t) => t.id === task.id);
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this task?",
-    );
-    if (!confirmed) {
-      return;
-    } else {
-      console.log("deleting task: " + currentTask.title);
-      tasks.splice(tasks.indexOf(currentTask), 1);
-      setTasks([...tasks]);
-    }
-  };
-  const logTasks = () => {
-    tasks.forEach((task) => {
-      console.log("Task Title: " + task.title);
-      console.log("Task Description: " + task.description);
-      console.log("Task Priority: " + task.priority);
-      console.log("Task Status: " + task.status);
-    });
-  };
-
-  const eraseTasks = () => {
-    console.log("clearing all tasks");
-    setTasks([]);
   };
 
   return (
@@ -94,10 +48,6 @@ export default function TaskDashboard() {
         <TaskRenderer
           tasks={tasks}
           dashboardValue={dashboard}
-          onDelete={deleteTask}
-          onClear={eraseTasks}
-          onLog={logTasks}
-          handleStatus={handleTaskStatus}
           handleToggle={handleToggle}
         />
       </div>
