@@ -1,7 +1,7 @@
 import React from "react";
 import "./TaskCard.css";
 import { useUserContext } from "../UserContext";
-export default function TaskCard({ task, isDemo, handleToggle }) {
+export default function TaskCard({ task, isDemo }) {
   const { state, dispatch } = useUserContext();
   return (
     <div className="task-card">
@@ -28,7 +28,12 @@ export default function TaskCard({ task, isDemo, handleToggle }) {
             <button
               className="status"
               id="start"
-              onClick={() => dispatch({ type: "TOGGLE_STATUS", payload: task })}
+              onClick={() =>
+                dispatch({
+                  type: "TOGGLE_STATUS",
+                  payload: { currentTask: task, postpone: false },
+                })
+              }
             >
               START
             </button>
@@ -37,20 +42,28 @@ export default function TaskCard({ task, isDemo, handleToggle }) {
               <button
                 className="postpone"
                 onClick={() => {
-                  const postpone = true;
-                  // dispatch({ type: "TOGGLE_STATUS", payload: task });
+                  dispatch({
+                    type: "TOGGLE_STATUS",
+                    payload: { currentTask: task, postpone: true },
+                  });
                 }}
               >
                 POSTPONE
               </button>
-              <button className="toggle" onClick={() => handleToggle(task)}>
+              <button
+                className="toggle"
+                onClick={() => alert("Button broken rn :(")}
+              >
                 {task.pause ? "RESUME" : "PAUSE"}
               </button>
               <button
                 className="status"
                 id="complete"
                 onClick={() =>
-                  dispatch({ type: "TOGGLE_STATUS", payload: task })
+                  dispatch({
+                    type: "TOGGLE_STATUS",
+                    payload: { currentTask: task, postpone: false },
+                  })
                 }
               >
                 COMPLETE
@@ -60,7 +73,12 @@ export default function TaskCard({ task, isDemo, handleToggle }) {
             <button
               className="status"
               id="reset"
-              onClick={() => dispatch({ type: "TOGGLE_STATUS", payload: task })}
+              onClick={() =>
+                dispatch({
+                  type: "TOGGLE_STATUS",
+                  payload: { currentTask: task, postpone: false },
+                })
+              }
             >
               OPEN TASK
             </button>

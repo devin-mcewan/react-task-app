@@ -1,17 +1,22 @@
 .task-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   width: 25%;
   background-color: rgba(255, 255, 255, 0.8);
   margin: 10px;
   min-height: 250px;
-  min-width: 250px;
-  padding: 10px;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 16px;
 }
 .task-card h3 {
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
   text-decoration: underline;
   padding: 10px;
   margin: 10px;
@@ -19,6 +24,10 @@
 }
 
 .task-card p {
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
   text-align: center;
   padding: 10px;
 }
@@ -30,13 +39,13 @@
 
 /* Start/Complete/Delete buttons */
 .task-card-button-container {
-  max-height: 100px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding: 10px;
-  height: 50%;
+  gap: 8px;
+  margin-top: auto; /* pushes buttons to the bottom of the card */
+  padding-top: 12px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 .task-card-button-container button {
   max-width: 100%;
@@ -107,10 +116,12 @@
 .additional-buttons-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
+  flex: 1; /* takes up the same space as a single button would */
+  gap: 6px;
 }
 
 .additional-buttons-container button {
-  margin: 5px;
+  width: 100%;
+  height: 38px; /* same fixed height as the other buttons */
+  padding: 0;
 }

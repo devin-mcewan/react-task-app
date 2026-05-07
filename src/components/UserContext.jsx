@@ -105,20 +105,22 @@ export const UserProvider = ({ children }) => {
         return { ...state, tasks: [...state.tasks, newTask] };
       }
       case "TOGGLE_STATUS": {
-        const response = action.payload;
+        const { currentTask, postpone } = action.payload;
         const updatedTasks = state.tasks.map((t) =>
-          t.taskID === response.taskID
-            ? {
-                ...t,
-                status:
-                  t.status === "New"
-                    ? "In Progress"
-                    : t.status === "In Progress"
-                      ? "Completed"
-                      : t.status === "Completed"
-                        ? "In Progress"
-                        : t.status,
-              }
+          t.taskID === currentTask.taskID
+            ? postpone
+              ? { ...t, status: "New" }
+              : {
+                  ...t,
+                  status:
+                    t.status === "New"
+                      ? "In Progress"
+                      : t.status === "In Progress"
+                        ? "Completed"
+                        : t.status === "Completed"
+                          ? "In Progress"
+                          : t.status,
+                }
             : t,
         );
         return { ...state, tasks: updatedTasks };

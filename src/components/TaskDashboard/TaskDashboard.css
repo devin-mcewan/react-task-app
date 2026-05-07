@@ -1,39 +1,93 @@
 .task-dashboard {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
 }
 
 .dashboard-selection {
-  max-height: 100px;
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: row;
-}
-.dashboard-selection h2 {
-  padding: 20px;
-  height: 100px;
-  width: 25%;
-  font-weight: bold;
-  color: white;
-  transition: background-color 0.5s ease;
-  text-align: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 100%;
 }
 
-#Selected {
-  background-color: #3e5de6;
-  color: antiquewhite;
-}
-
-#Unselected {
-  background-color: #667eea;
-}
-#Unselected:hover {
-  background-color: #3e5de6;
+.dashboard-tab {
+  flex: 1;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
+  color: #666;
+  background: transparent;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+  white-space: nowrap;
+  padding: 0 12px;
+}
+
+.dashboard-tab:hover {
+  background: #fff;
+  color: #333;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-tab.selected {
+  background: #fff;
+  color: #333;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.tab-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tab-dot.new {
+  background: #667eea;
+}
+.tab-dot.progress {
+  background: #f0ad4e;
+}
+.tab-dot.completed {
+  background: #44cc4f;
+}
+
+.tab-count {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.07);
+  color: #666;
+}
+
+.tab-count.selected {
+  background: rgba(102, 126, 234, 0.15);
+  color: #667eea;
+}
+
+.dashboard-tab.create-tab {
+  flex: 0;
+  padding: 0 16px;
+  color: #667eea;
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.dashboard-tab.create-tab:hover {
+  background: rgba(102, 126, 234, 0.08);
 }
