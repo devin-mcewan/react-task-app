@@ -52,9 +52,14 @@ export default function TaskCard({ task, isDemo }) {
               </button>
               <button
                 className="toggle"
-                onClick={() => alert("Button broken rn :(")}
+                onClick={() =>
+                  dispatch({
+                    type: "TOGGLE_SUSPEND",
+                    payload: { currentTask: task },
+                  })
+                }
               >
-                {task.pause ? "RESUME" : "PAUSE"}
+                {task.suspended ? "RESUME" : "PAUSE"}
               </button>
               <button
                 className="status"

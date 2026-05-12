@@ -98,6 +98,7 @@ export const UserProvider = ({ children }) => {
               priority: response.priority,
               status: "New",
               userID: state.currentUser.userID,
+              suspended: false,
             })
           : alert("Please complete all fields");
         // new tasks will be created with a unique taskID, the title, description, priority, and status from the action payload,
@@ -124,6 +125,35 @@ export const UserProvider = ({ children }) => {
             : t,
         );
         return { ...state, tasks: updatedTasks };
+      }
+      // Task suspend is a pause/resume feature
+      //Pausing the app will update that specific task with a truthy value for "suspended".
+      //Suspended (paused) will take a currentTask, and set it's "suspend" status = "true".
+      // ? suspension status in root object creation?
+      //    = will always be true unless said otherwise.
+      //  this will help "properties of undefined" if the user has never toggled  this
+      // then the function will return the previous state, as well as the previous state of "tasks" with this specific task (by ID) has been updated.
+      case "TOGGLE_SUSPEND": {
+        const { currentTask } = action.payload;
+        if (currentTask.suspended) {
+          return {
+            ...state,
+            tasks: state.tasks.map((task) =>
+              task.taskID === currentTask.taskID
+                ? { ...task, suspended: false }
+                : task,
+            ),
+          };
+        } else {
+          return {
+            ...state,
+            tasks: state.tasks.map((task) =>
+              task.taskID === currentTask.taskID
+                ? { ...task, suspended: true }
+                : task,
+            ),
+          };
+        }
       }
       //case "EDIT_TASK":
       case "DELETE_TASK": {

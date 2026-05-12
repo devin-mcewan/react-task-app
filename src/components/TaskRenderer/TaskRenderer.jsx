@@ -5,7 +5,7 @@ import TaskCard from "../TaskCard/TaskCard.jsx";
 import { useUserContext } from "../UserContext.jsx";
 
 export default function TaskRenderer({ dashboardValue }) {
-  const { state, dispatch } = useUserContext();
+  const { state } = useUserContext();
   useEffect(() => {}, [state.tasks]);
   let rendered;
   if (dashboardValue === "create-new") {
